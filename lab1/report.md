@@ -1,4 +1,3 @@
-Лабораторная работа №1
 Тема
 Моделирование процессов с использованием Git и визуальных нотаций.
 
@@ -7,11 +6,11 @@
 
 Диаграммы
 1. BPMN
-![BPMN Diagram](../diagrams/process-bpmn.png)
+![BPMN Diagram](/lab1/diagrams/process-bpmn.png)
 Исходник: diagrams/process.bpmn
 
 2. UML Activity Diagram
-![UML Activity Diagram](../diagrams/activity-uml.png)
+![UML Activity Diagram](/lab1/diagrams/activity-uml.png)
 Исходник: diagrams/activity.drawio
 
 3. Sequence Diagram
@@ -21,7 +20,7 @@
 Исходник Mermaid: docs/flowchart.md
 
 Демонстрация Git diff
-![Git Diff](../gitdiff.png)
+![Git Diff](/lab1/gitdiff.png)
 
 При изменении файла process.bpmn Git показывает конкретные строки XML, которые были добавлены или изменены. Для PNG-файла содержимое построчно сравнить нельзя: Git фиксирует изменение бинарного файла. Аналогичное сравнение выполнено для UML и Mermaid-файлов.
 
