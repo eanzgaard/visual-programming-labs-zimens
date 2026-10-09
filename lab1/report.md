@@ -6,7 +6,7 @@
 
 Диаграммы
 1. BPMN
-![BPMN Diagram](/lab1/diagrams/process-bpmn.png)
+![BPMN Diagram](/lab1/diagrams/process-bpmn.svg)
 Исходник: diagrams/process.bpmn
 
 2. UML Activity Diagram
