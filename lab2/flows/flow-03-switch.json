@@ -1,0 +1,123 @@
+
+[
+  {
+    "id": "tab03zimens",
+    "type": "tab",
+    "label": "03 Switch",
+    "disabled": false,
+    "info": "",
+    "env": []
+  },
+  {
+    "id": "inject03zimens",
+    "type": "inject",
+    "z": "tab03zimens",
+    "name": "Generate score",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 160,
+    "y": 120,
+    "wires": [
+      [
+        "function03zimens"
+      ]
+    ]
+  },
+  {
+    "id": "function03zimens",
+    "type": "function",
+    "z": "tab03zimens",
+    "name": "Random score",
+    "func": "msg.payload = {\n    student: \"Zimens\",\n    group: \"ИИ-241\",\n    score: Math.floor(Math.random() * 101)\n};\nmsg.topic = \"lab2/Zimens/ИИ-241/score\";\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 360,
+    "y": 120,
+    "wires": [
+      [
+        "switch03zimens"
+      ]
+    ]
+  },
+  {
+    "id": "switch03zimens",
+    "type": "switch",
+    "z": "tab03zimens",
+    "name": "score >= 50?",
+    "property": "payload.score",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "gte",
+        "v": "50",
+        "vt": "num"
+      },
+      {
+        "t": "lt",
+        "v": "50",
+        "vt": "num"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 560,
+    "y": 120,
+    "wires": [
+      [
+        "debug03pass"
+      ],
+      [
+        "debug03fail"
+      ]
+    ]
+  },
+  {
+    "id": "debug03pass",
+    "type": "debug",
+    "z": "tab03zimens",
+    "name": "PASS (score >= 50)",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 780,
+    "y": 100,
+    "wires": []
+  },
+  {
+    "id": "debug03fail",
+    "type": "debug",
+    "z": "tab03zimens",
+    "name": "FAIL (score < 50)",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 780,
+    "y": 160,
+    "wires": []
+  }
+]

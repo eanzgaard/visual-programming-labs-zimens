@@ -1,0 +1,94 @@
+
+[
+  {
+    "id": "tab04zimens",
+    "type": "tab",
+    "label": "04 Change",
+    "disabled": false,
+    "info": "",
+    "env": []
+  },
+  {
+    "id": "inject04zimens",
+    "type": "inject",
+    "z": "tab04zimens",
+    "name": "Input",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "original",
+    "payloadType": "str",
+    "x": 150,
+    "y": 120,
+    "wires": [
+      [
+        "change04zimens"
+      ]
+    ]
+  },
+  {
+    "id": "change04zimens",
+    "type": "change",
+    "z": "tab04zimens",
+    "name": "Set topic/timestamp/payload",
+    "rules": [
+      {
+        "t": "set",
+        "p": "topic",
+        "pt": "msg",
+        "to": "lab2/Zimens/ИИ-241/change",
+        "tot": "str"
+      },
+      {
+        "t": "set",
+        "p": "timestamp",
+        "pt": "msg",
+        "to": "",
+        "tot": "date"
+      },
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "Changed by Zimens",
+        "tot": "str"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 410,
+    "y": 120,
+    "wires": [
+      [
+        "debug04zimens"
+      ]
+    ]
+  },
+  {
+    "id": "debug04zimens",
+    "type": "debug",
+    "z": "tab04zimens",
+    "name": "Complete msg object",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 700,
+    "y": 120,
+    "wires": []
+  }
+]

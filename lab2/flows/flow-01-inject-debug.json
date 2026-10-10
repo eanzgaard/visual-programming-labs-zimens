@@ -1,0 +1,49 @@
+
+[
+  {
+    "id": "tab01zimens",
+    "type": "tab",
+    "label": "Lab 2.1 - Inject Debug",
+    "disabled": false,
+    "info": ""
+  },
+  {
+    "id": "inject01zimens",
+    "type": "inject",
+    "z": "tab01zimens",
+    "name": "Zimens every 5 seconds",
+    "props": [
+      { "p": "payload" },
+      { "p": "topic", "vt": "str" }
+    ],
+    "repeat": "5",
+    "crontab": "",
+    "once": true,
+    "onceDelay": "1",
+    "topic": "lab2/Zimens/basic",
+    "payload": "Zimens",
+    "payloadType": "str",
+    "x": 200,
+    "y": 160,
+    "wires": [
+      ["debug01zimens"]
+    ]
+  },
+  {
+    "id": "debug01zimens",
+    "type": "debug",
+    "z": "tab01zimens",
+    "name": "Complete message",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 460,
+    "y": 160,
+    "wires": []
+  }
+]

@@ -1,0 +1,72 @@
+
+[
+  {
+    "id": "tab05zimens",
+    "type": "tab",
+    "label": "05 Template",
+    "disabled": false,
+    "info": "",
+    "env": []
+  },
+  {
+    "id": "inject05zimens",
+    "type": "inject",
+    "z": "tab05zimens",
+    "name": "Student object",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"student\":\"Zimens\",\"group\":\"ИИ-241\",\"score\":92}",
+    "payloadType": "json",
+    "x": 180,
+    "y": 120,
+    "wires": [
+      [
+        "template05zimens"
+      ]
+    ]
+  },
+  {
+    "id": "template05zimens",
+    "type": "template",
+    "z": "tab05zimens",
+    "name": "Mustache → JSON",
+    "field": "payload",
+    "fieldType": "msg",
+    "format": "json",
+    "syntax": "mustache",
+    "template": "{\n  \"message\": \"Student {{payload.student}} from {{payload.group}} has score {{payload.score}}\",\n  \"author\": \"{{payload.student}}\",\n  \"group\": \"{{payload.group}}\"\n}",
+    "output": "json",
+    "x": 440,
+    "y": 120,
+    "wires": [
+      [
+        "debug05zimens"
+      ]
+    ]
+  },
+  {
+    "id": "debug05zimens",
+    "type": "debug",
+    "z": "tab05zimens",
+    "name": "Template result",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 700,
+    "y": 120,
+    "wires": []
+  }
+]

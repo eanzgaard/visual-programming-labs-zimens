@@ -1,0 +1,73 @@
+
+[
+  {
+    "id": "tab02zimens",
+    "type": "tab",
+    "label": "02 Function",
+    "disabled": false,
+    "info": "",
+    "env": []
+  },
+  {
+    "id": "inject02zimens",
+    "type": "inject",
+    "z": "tab02zimens",
+    "name": "Input",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "25",
+    "payloadType": "num",
+    "x": 150,
+    "y": 120,
+    "wires": [
+      [
+        "function02zimens"
+      ]
+    ]
+  },
+  {
+    "id": "function02zimens",
+    "type": "function",
+    "z": "tab02zimens",
+    "name": "JS basics",
+    "func": "const values = [15, 28, 42, 55, 70];\nlet sum = 0;\nfor (let i = 0; i < values.length; i++) {\n    sum += values[i];\n}\nconst average = sum / values.length;\nlet level;\nif (average >= 40) {\n    level = \"high\";\n} else {\n    level = \"low\";\n}\nconst result = {\n    student: \"Zimens\",\n    group: \"ИИ-241\",\n    values: values,\n    sum: sum,\n    average: average,\n    level: level\n};\nmsg.payload = result;\nmsg.topic = \"lab2/Zimens/ИИ-241/function\";\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 410,
+    "y": 120,
+    "wires": [
+      [
+        "debug02zimens"
+      ]
+    ]
+  },
+  {
+    "id": "debug02zimens",
+    "type": "debug",
+    "z": "tab02zimens",
+    "name": "Result",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 680,
+    "y": 120,
+    "wires": []
+  }
+]
