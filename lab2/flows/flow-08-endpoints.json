@@ -1,0 +1,154 @@
+
+[
+  {
+    "id": "tab08zimens",
+    "type": "tab",
+    "label": "08 GET endpoints",
+    "disabled": false,
+    "info": ""
+  },
+  {
+    "id": "httpin08text",
+    "type": "http in",
+    "z": "tab08zimens",
+    "name": "GET /api/text",
+    "url": "/api/text",
+    "method": "get",
+    "upload": false,
+    "swaggerDoc": "",
+    "x": 160,
+    "y": 70,
+    "wires": [
+      [
+        "function08text"
+      ]
+    ]
+  },
+  {
+    "id": "function08text",
+    "type": "function",
+    "z": "tab08zimens",
+    "name": "Text response",
+    "func": "msg.payload = \"Hello from Zimens, ИИ-241\";\nmsg.headers = {\"Content-Type\": \"text/plain; charset=utf-8\"};\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 390,
+    "y": 70,
+    "wires": [
+      [
+        "response08text"
+      ]
+    ]
+  },
+  {
+    "id": "response08text",
+    "type": "http response",
+    "z": "tab08zimens",
+    "name": "Response",
+    "statusCode": "",
+    "headers": {},
+    "x": 620,
+    "y": 70,
+    "wires": []
+  },
+  {
+    "id": "httpin08info",
+    "type": "http in",
+    "z": "tab08zimens",
+    "name": "GET /api/info",
+    "url": "/api/info",
+    "method": "get",
+    "upload": false,
+    "swaggerDoc": "",
+    "x": 160,
+    "y": 140,
+    "wires": [
+      [
+        "function08info"
+      ]
+    ]
+  },
+  {
+    "id": "function08info",
+    "type": "function",
+    "z": "tab08zimens",
+    "name": "JSON info",
+    "func": "msg.payload = {student: \"Zimens\", group: \"ИИ-241\"};\nmsg.headers = {\"Content-Type\": \"application/json; charset=utf-8\"};\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 390,
+    "y": 140,
+    "wires": [
+      [
+        "response08info"
+      ]
+    ]
+  },
+  {
+    "id": "response08info",
+    "type": "http response",
+    "z": "tab08zimens",
+    "name": "Response",
+    "statusCode": "",
+    "headers": {},
+    "x": 620,
+    "y": 140,
+    "wires": []
+  },
+  {
+    "id": "httpin08item",
+    "type": "http in",
+    "z": "tab08zimens",
+    "name": "GET /api/items/:id",
+    "url": "/api/items/:id",
+    "method": "get",
+    "upload": false,
+    "swaggerDoc": "",
+    "x": 180,
+    "y": 230,
+    "wires": [
+      [
+        "function08item"
+      ]
+    ]
+  },
+  {
+    "id": "function08item",
+    "type": "function",
+    "z": "tab08zimens",
+    "name": "200 / 400 / 404",
+    "func": "const raw = msg.req.params.id;\nconst id = Number(raw);\nconst items = {\n    1: {id: 1, name: \"Keyboard\"},\n    2: {id: 2, name: \"Mouse\"},\n    3: {id: 3, name: \"Monitor\"}\n};\nmsg.headers = {\"Content-Type\": \"application/json; charset=utf-8\"};\nif (!Number.isInteger(id) || id <= 0) {\n    msg.statusCode = 400;\n    msg.payload = {error: \"invalid id\", student: \"Zimens\"};\n} else if (!items[id]) {\n    msg.statusCode = 404;\n    msg.payload = {error: \"item not found\", id: id};\n} else {\n    msg.statusCode = 200;\n    msg.payload = items[id];\n}\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 420,
+    "y": 230,
+    "wires": [
+      [
+        "response08item"
+      ]
+    ]
+  },
+  {
+    "id": "response08item",
+    "type": "http response",
+    "z": "tab08zimens",
+    "name": "Response",
+    "statusCode": "",
+    "headers": {},
+    "x": 650,
+    "y": 230,
+    "wires": []
+  }
+]

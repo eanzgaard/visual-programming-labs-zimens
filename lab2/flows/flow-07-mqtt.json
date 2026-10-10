@@ -1,0 +1,133 @@
+
+[
+  {
+    "id": "tab07zimens",
+    "type": "tab",
+    "label": "07 MQTT",
+    "disabled": false,
+    "info": ""
+  },
+  {
+    "id": "inject07zimens",
+    "type": "inject",
+    "z": "tab07zimens",
+    "name": "Every 5 sec",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "5",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 150,
+    "y": 90,
+    "wires": [
+      [
+        "function07zimens"
+      ]
+    ]
+  },
+  {
+    "id": "function07zimens",
+    "type": "function",
+    "z": "tab07zimens",
+    "name": "Random value",
+    "func": "msg.payload = Math.floor(Math.random() * 101);\nmsg.topic = \"student/Zimens/ИИ-241/lab2/random\";\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 350,
+    "y": 90,
+    "wires": [
+      [
+        "mqttout07zimens"
+      ]
+    ]
+  },
+  {
+    "id": "mqttout07zimens",
+    "type": "mqtt out",
+    "z": "tab07zimens",
+    "name": "Publish",
+    "topic": "",
+    "qos": "0",
+    "retain": "false",
+    "respTopic": "",
+    "contentType": "",
+    "userProps": "",
+    "correl": "",
+    "expiry": "",
+    "broker": "mqttconfig07zimens",
+    "x": 550,
+    "y": 90,
+    "wires": []
+  },
+  {
+    "id": "mqttin07zimens",
+    "type": "mqtt in",
+    "z": "tab07zimens",
+    "name": "Subscribe same topic",
+    "topic": "student/Zimens/ИИ-241/lab2/random",
+    "qos": "0",
+    "datatype": "auto-detect",
+    "broker": "mqttconfig07zimens",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "inputs": 0,
+    "x": 230,
+    "y": 180,
+    "wires": [
+      [
+        "debug07zimens"
+      ]
+    ]
+  },
+  {
+    "id": "debug07zimens",
+    "type": "debug",
+    "z": "tab07zimens",
+    "name": "MQTT received",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 520,
+    "y": 180,
+    "wires": []
+  },
+  {
+    "id": "mqttconfig07zimens",
+    "type": "mqtt-broker",
+    "name": "HiveMQ public",
+    "broker": "broker.hivemq.com",
+    "port": "1883",
+    "clientid": "zimens-lab2-node-red-241",
+    "autoConnect": true,
+    "usetls": false,
+    "protocolVersion": "4",
+    "keepalive": "60",
+    "cleansession": true,
+    "autoUnsubscribe": true,
+    "birthTopic": "",
+    "birthQos": "0",
+    "birthPayload": "",
+    "birthMsg": {},
+    "closeTopic": "",
+    "closeQos": "0",
+    "closePayload": "",
+    "closeMsg": {}
+  }
+]

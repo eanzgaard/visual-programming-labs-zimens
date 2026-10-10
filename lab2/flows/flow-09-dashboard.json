@@ -1,0 +1,147 @@
+
+[
+  {
+    "id": "tab09zimens",
+    "type": "tab",
+    "label": "09 Dashboard",
+    "disabled": false,
+    "info": ""
+  },
+  {
+    "id": "inject09zimens",
+    "type": "inject",
+    "z": "tab09zimens",
+    "name": "Sensor every 2 sec",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "2",
+    "crontab": "",
+    "once": true,
+    "onceDelay": 1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 180,
+    "y": 120,
+    "wires": [
+      [
+        "function09zimens"
+      ]
+    ]
+  },
+  {
+    "id": "function09zimens",
+    "type": "function",
+    "z": "tab09zimens",
+    "name": "Simulate temperature",
+    "func": "msg.payload = Number((20 + Math.random() * 10).toFixed(1));\nmsg.topic = \"Temperature / Zimens\";\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 420,
+    "y": 120,
+    "wires": [
+      [
+        "gauge09zimens",
+        "chart09zimens"
+      ]
+    ]
+  },
+  {
+    "id": "gauge09zimens",
+    "type": "ui_gauge",
+    "z": "tab09zimens",
+    "name": "Temperature gauge",
+    "group": "group09zimens",
+    "order": 1,
+    "width": 6,
+    "height": 4,
+    "gtype": "gage",
+    "title": "Current temperature",
+    "label": "°C",
+    "format": "{{value | number:1}}",
+    "min": 0,
+    "max": "50",
+    "colors": [
+      "#00b500",
+      "#e6e600",
+      "#ca3838"
+    ],
+    "seg1": "",
+    "seg2": "",
+    "diff": false,
+    "className": "",
+    "x": 700,
+    "y": 90,
+    "wires": []
+  },
+  {
+    "id": "chart09zimens",
+    "type": "ui_chart",
+    "z": "tab09zimens",
+    "name": "Temperature chart",
+    "group": "group09zimens",
+    "order": 2,
+    "width": 12,
+    "height": 5,
+    "label": "Temperature history — Zimens",
+    "chartType": "line",
+    "legend": "false",
+    "xformat": "HH:mm:ss",
+    "interpolate": "linear",
+    "nodata": "Waiting for sensor data",
+    "dot": false,
+    "ymin": "",
+    "ymax": "",
+    "removeOlder": "1",
+    "removeOlderPoints": "",
+    "removeOlderUnit": "3600",
+    "cutout": 0,
+    "useOneColor": false,
+    "useUTC": false,
+    "colors": [
+      "#1f77b4",
+      "#aec7e8",
+      "#ff7f0e",
+      "#2ca02c",
+      "#98df8a",
+      "#d62728",
+      "#ff9896",
+      "#9467bd",
+      "#c5b0d5"
+    ],
+    "outputs": 1,
+    "useDifferentColor": false,
+    "className": "",
+    "x": 700,
+    "y": 160,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "dashboardtab09zimens",
+    "type": "ui_tab",
+    "name": "Lab2 Dashboard — Zimens",
+    "icon": "dashboard",
+    "disabled": false,
+    "hidden": false
+  },
+  {
+    "id": "group09zimens",
+    "type": "ui_group",
+    "name": "Sensor — Zimens",
+    "tab": "dashboardtab09zimens",
+    "order": 1,
+    "disp": true,
+    "width": "12",
+    "collapse": false,
+    "className": ""
+  }
+]
