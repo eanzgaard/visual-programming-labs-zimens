@@ -1,0 +1,64 @@
+{
+  "name": "Lab 4 - Zimens - ИИ-241 - Redis Delete Exists",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "manual-trigger-10",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "key": "zimens"
+      },
+      "id": "redis-delete-10",
+      "name": "Redis Delete",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "operation": "exists",
+        "key": "zimens"
+      },
+      "id": "redis-exists-10",
+      "name": "Redis Exists",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [680, 300]
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Redis Delete",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Redis Delete": {
+      "main": [
+        [
+          {
+            "node": "Redis Exists",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "flow-10-redis-zimens"
+}

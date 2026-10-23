@@ -16,10 +16,7 @@
       "name": "Schedule Trigger",
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
-      "position": [
-        260,
-        300
-      ]
+      "position": [260, 300]
     },
     {
       "parameters": {
@@ -29,10 +26,7 @@
       "name": "Code",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [
-        500,
-        300
-      ]
+      "position": [500, 300]
     }
   ],
   "connections": {
@@ -52,4 +46,5 @@
   "settings": {
     "executionOrder": "v1"
   },
+  "versionId": "flow-06-schedule-zimens"
 }
