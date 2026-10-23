@@ -1,0 +1,74 @@
+{
+  "name": "Lab 4 - Zimens - ИИ-241 - Code Node",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "1f5b7a2c-3d4e-4a5b-8c9d-0e1f2a3b4c5d",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        260,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const surname = \"Zimens\";\nconst group = \"ИИ-241\";\n\nconst numbers = [10, 20, 30];\nlet total = 0;\n\nfor (let i = 0; i < numbers.length; i++) {\n  total += numbers[i];\n}\n\nlet status;\nif (total >= 50) {\n  status = \"Сумма не меньше 50\";\n} else {\n  status = \"Сумма меньше 50\";\n}\n\nconst result = {\n  surname: surname,\n  group: group,\n  numbers: numbers,\n  total: total,\n  status: status\n};\n\nreturn [{ json: { payload: result } }];"
+      },
+      "id": "2a6c8b3d-4e5f-4b6c-9d0e-1f2a3b4c5d",
+      "name": "Code - JS basics",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        480,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "3b7d9c4e-5f6a-4c7d-8e0f-2a3b4c5d6e7f",
+      "name": "NoOp",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Code - JS basics",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code - JS basics": {
+      "main": [
+        [
+          {
+            "node": "NoOp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "4c8e0f1a-2b3c-4d5e-8f9a-0b1c2d3e4f5a",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "tags": []
+}

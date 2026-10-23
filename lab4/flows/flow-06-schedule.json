@@ -1,0 +1,55 @@
+{
+  "name": "Lab 4 - Zimens - ИИ-241 - Schedule Trigger",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 5
+            }
+          ]
+        }
+      },
+      "id": "schedule-trigger-06",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        260,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const currentTime = new Date().toISOString();\n\nreturn [\n  {\n    json: {\n      surname: \"Zimens\",\n      group: \"ИИ-241\",\n      currentTime\n    }\n  }\n];"
+      },
+      "id": "code-06",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        500,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+}

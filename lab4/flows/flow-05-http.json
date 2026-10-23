@@ -1,0 +1,83 @@
+{
+  "name": "Lab 4 - Zimens - ИИ-241 - HTTP Request",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "aa111111-1111-4aaa-8bbb-111111111111",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        240,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://catfact.ninja/fact",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "id": "bb222222-2222-4bbb-8ccc-222222222222",
+      "name": "HTTP Request - Cat Fact",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        460,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const response = $json;\n\nconsole.log(\"HTTP API response:\", JSON.stringify(response, null, 2));\n\nreturn [{ json: { payload: response } }];"
+      },
+      "id": "cc333333-3333-4ccc-9ddd-333333333333",
+      "name": "Code - Show API response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        680,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request - Cat Fact",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request - Cat Fact": {
+      "main": [
+        [
+          {
+            "node": "Code - Show API response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "dd444444-4444-4ddd-8eee-444444444444",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "tags": []
+}

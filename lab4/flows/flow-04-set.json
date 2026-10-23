@@ -1,0 +1,100 @@
+{
+  "name": "Lab 4 - Zimens - ИИ-241 - Set Fields",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "a1b2c3d4-1111-4aaa-8bbb-123456789001",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        240,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "manual",
+        "duplicateItem": false,
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b1b2c3d4-2222-4aaa-8bbb-123456789001",
+              "name": "topic",
+              "value": "lab4/zimens/set",
+              "type": "string"
+            },
+            {
+              "id": "c1b2c3d4-3333-4aaa-8bbb-123456789001",
+              "name": "timestamp",
+              "value": "={{ $now.toISO() }}",
+              "type": "string"
+            },
+            {
+              "id": "d1b2c3d4-4444-4aaa-8bbb-123456789001",
+              "name": "payload",
+              "value": "Zimens - ИИ-241",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "e1b2c3d4-5555-4aaa-8bbb-123456789001",
+      "name": "Set - Create message",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        460,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const msg = $json;\n\nconsole.log(\"Complete msg object:\", JSON.stringify(msg, null, 2));\n\nreturn [{ json: msg }];"
+      },
+      "id": "f1b2c3d4-6666-4aaa-8bbb-123456789001",
+      "name": "Code - Show complete msg",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        680,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Set - Create message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set - Create message": {
+      "main": [
+        [
+          {
+            "node": "Code - Show complete msg",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "12345678-aaaa-4bbb-8ccc-123456789001",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "tags": []
+}
